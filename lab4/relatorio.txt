@@ -1,0 +1,89 @@
+1. 
+c = 150  =  
+1001 0110
+8421 8421
+8001 0420
+  9   6
+  0x96
+
+
+s = -3
+
+0000 0000 0000 0011
+1111 1111 1111 1100 + 1 = 
+1111 1111 1111 1101
+8421 8421 8421 8401
+F     F    F    D
+    0xFFFD
+
+
+i = -151
+
+0000 0000 0000 0000 0000 0000 1001 0111 
+1111 1111 1111 1111 1111 1111 0110 1000  +1
+1111 1111 1111 1111 1111 1111 0110 1001
+F       F   F   F     F     F   6    9
+    0xFFFFFF69
+
+
+2. 
+l = -32765
+
+0111 1111 1111 1101
+1000 0000 0000 0011
+8     0    0   3
+    0x8003
+
+k = 32771
+
+1000 0000 0000 0011
+8     0    0   3
+    0x8003
+
+O valor de k (32771) tem a mesma representação binária que 
+o valor de l (–32765), só que um é sem sinal (unsigned) e 
+o outro é com sinal (signed). Por isso, os bytes na memória são iguais, 
+mas o valor mostrado muda dependendo de como o dado é interpretado, com 
+ou sem sinal
+
+3.
+int xbyte (packed_t word, int bytenum) {
+  unsigned int shift = word>>(bytenum * 8);
+  unsigned char byte = shift & 0xFF;
+  return (int)((char)byte);
+}
+
+4.a. O valor 0xffffffff em binário é 11111111 11111111 11111111 11111111.
+Como x é um int com sinal, essa representação corresponde a -1 no sistema de complemento de dois.
+Já y = 2.
+
+Ao imprimir com %d, temos:
+
+x=-1, y=2
+E como -1 < 2, o programa responde: x é menor do que y? sim
+
+4.b. Aqui, x é um unsigned int, logo 0xffffffff é interpretado como
+4294967295 (o maior valor de 32 bits sem sinal).
+y = 2.
+
+O printf está usando %d (inteiro com sinal), mas deveria usar %u.
+Com %d, os bits de x acabam sendo mostrados como -1.
+Com %u, o valor certo é exibido:
+
+x=4294967295, y=2
+x é menor do que y? nao
+A comparação dá falso, porque 4294967295 < 2 não é verdade.
+
+4.c. O x é int, então vale -1. Já y é unsigned int, logo vale 2.
+Na hora da comparação, o compilador precisa colocar os dois no mesmo tipo.
+Pela regra de conversão do C, x é convertido para unsigned int, virando 4294967295.
+
+Assim, a comparação é entre 4294967295 e 2, e portanto x < y resulta em falso:
+
+x=-1, y=2
+x é menor do que y? nao
+
+5. sc = -1
+
+1111 1111 -> 1111 1111 1111 1111 1111 1111 1111 1111
+2^32 - 1 = 4,294,967,295
