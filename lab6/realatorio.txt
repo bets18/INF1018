@@ -1,0 +1,44 @@
+1.
+O primeiro ajuste focou em calcular a soma total dos elementos do array.
+
+O principal registro introduzido foi %r13d, que atuou como o acumulador 
+da soma.
+
+A instrução central que traduziu a lógica sum += *p; foi addl %eax, %r13d.
+
+A chamada à função de impressão (printf) foi removida de dentro do loop e 
+posicionada após ele. Isso garantiu que a impressão ocorresse apenas uma 
+vez, mostrando o resultado final da soma em vez de imprimir cada valor 
+individual.
+
+2. 
+Foi implementada a lógica de controle if ((*p % 2) == 0) para filtrar e 
+imprimir somente números pares.
+
+O teste de paridade foi realizado com a instrução andl $1, %eax, que isola 
+o bit menos significativo. Se o resultado for 0, o número é par.
+
+O controle de fluxo foi ajustado com jne L_incrementa. Isso atua como um 
+else eficiente: se o número for ímpar (resultado do AND for diferente de 
+zero), o código salta o bloco de impressão.
+
+Foi crucial salvar o valor original de *p em %r13d antes de realizar o 
+teste em %eax, garantindo que o printf imprima o número correto do array 
+(ex: 10) e não o resultado do teste (0 ou 1).
+
+3. 
+O código foi adaptado para trabalhar com arrays de bytes (caracteres char) 
+em vez de inteiros de 4 bytes.
+
+A aritmética de ponteiros foi alterada: o incremento do ponteiro (%r12) 
+passou de addq $4, %r12 para addq $1, %r12, para avançar corretamente 1 
+byte por iteração.
+
+A instrução de carga de dados foi trocada para movsbl (%r12), %eax. Essa 
+instrução é essencial para realizar o alargamento com sinal 
+(sign extension).
+
+O alargamento com sinal garante que valores negativos armazenados em 8 
+bits (como o byte que representa -21) sejam corretamente estendidos para 
+32 bits antes de serem passados para o printf, preservando assim seu sinal 
+negativo.
