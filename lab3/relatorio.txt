@@ -1,0 +1,33 @@
+1. y recebe apenas o byte menos significativo de x (21 em hexadecimal), os outros ficam zerados
+z mantém os três bytes menos significativos iguais a x, mas força o byte mais significativo a FF
+Assim, altera apenas o byte mais alto e preserva os demais
+
+0x01010101 → tem número par de bits 1 → retorna 0
+0x01030101 → tem número ímpar de bits 1 → retorna 1
+
+
+2. A função odd_ones verifica se a quantidade de bits iguais a 1 em um número é par ou ímpar
+Isso é feito usando operações de deslocamento e XOR, que reduzem todos os bits até sobrar apenas 1 bit representando a paridade
+O retorno x & 1 dá 1 se o número de bits 1 for ímpar, e 0 se for par
+
+0x000000FF preserva apenas o byte menos significativo e zera os demais em qualquer caso. Por isso, se x=0x87654321, temos y=0x00000021
+0x00FFFFFF preserva os três bytes menos significativos. Em seguida, com OR em 0xFF000000, forçamos o byte mais significativo a FF. Assim, z=0xFF654321
+
+
+3.a. A função switch_byte inverte os nibbles de um byte (os 4 bits mais significativos e os 4 menos significativos)
+0xAB (1010 1011) vira 0xBA (1011 1010)
+
+O deslocamento para a esquerda (x << n) empurra os bits n posições
+O deslocamento para a direita (x >> (8 - n)) recupera os bits que foram "perdidos"
+A operação OR junta as duas partes, completando a rotação circular
+Essa técnica é bastante usada em criptografia e compressão de dados
+
+
+3.b. A função rotate_left realiza uma rotação de n bits para a esquerda em um número de 8 bits
+Diferente de um simples deslocamento, a rotação faz com que os bits que saem pela esquerda retornem pelo lado direito
+
+O byte é dividido em dois nibbles (4 bits)
+0xF0 pega o nibble alto, que é deslocado para a direita
+0x0F pega o nibble baixo, que é deslocado para a esquerda
+O resultado é a troca de posição entre os nibbles
+0xAB (1010 1011) vira 0xBA (1011 1010)
