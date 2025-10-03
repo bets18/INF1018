@@ -1,0 +1,60 @@
+1. 
+int b[2];  -> 8 bytes (3 * 4)
+short a[2][3];  -> 12 bytes (2 * 3 * 2)
+
+2.
+O buraco entre b e c é o padding, eles são alinhados em endereços de memória que são múltiplos do seu próprio tamanho
+
+3.
+a.
+c1 -> 1 byte
+i -> 4 bytes
+c2 -> 1 byte
+
+struct x1 -> 12 bytes 
+
+b.
+l -> 8 bytes
+c -> 1 byte 
+
+struct x2 -> 16 bytes
+
+c.
+i -> 4 bytes 
+c1 -> 1 byte
+c2 -> 1 byte 
+
+struct x3 -> 8 bytes
+
+d.
+struct x2 x -> 16 bytes 
+c -> 1 byte 
+
+struct x4 -> 24 bytes 
+
+e.
+c1 -> 1 byte
+c2 -> 1 byte
+c3 -> 1 byte
+
+struct x5 -> 3 bytes 
+
+f.
+s1 -> 2 bytes
+i -> 4 bytes 
+c -> 3 bytes 
+s2 -> 2 bytes 
+
+struct x6 -> 14 bytes
+
+g.
+i -> 4 bytes 
+c -> 5 bytes 
+
+union U1 -> 5 bytes 
+
+h.
+s -> 2 bytes
+c -> 5 bytes 
+
+union U2 -> 5 bytes 
