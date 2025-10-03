@@ -1,0 +1,28 @@
+1. 
+%rdi é usado para o primeiro argumento da função.
+
+A instrução movq $s1, %rdi carrega o endereço da string do comando 
+("ls -ls") para dentro de %rdi.
+
+A instrução call system utiliza o endereço em %rdi para saber qual 
+comando deve ser executado pelo sistema operacional. O sucesso é 
+sinalizado com um valor zero que é retornado no final.
+
+2. 
+Variáveis como o contador i e o ponteiro p são mapeadas para registradores 
+(geralmente %r12d e %rbx). O loop for é traduzido por rótulos e instruções 
+de comparação (cmpl) e salto, que controlam o fluxo de iteração.
+
+A função filtro é chamada primeiro. Seus argumentos (*p e o limite 1) são 
+passados para os registradores %edi e %esi (primeiro e segundo argumentos).
+O resultado que filtro retorna é colocado em %eax.
+
+(printf): O valor de retorno de filtro (que está em %eax) é movido para 
+%esi para ser o segundo argumento do printf. O primeiro argumento ("%d\n") 
+vai para %rdi.
+
+Uma instrução obrigatória, movl $0, %eax, é inserida antes do call printf 
+para seguir as regras de chamadas de funções variádicas.
+
+O ponteiro p é avançado com addq $4, %rbx. O uso do valor 4 é fundamental, 
+pois ele move o ponteiro para o próximo inteiro (que ocupa 4 bytes) no array.
