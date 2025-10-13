@@ -1,21 +1,22 @@
 #include <stdio.h>
 void dump (void *p, int n) {
-unsigned char *p1 = (unsigned char *) p;
-while (n--) {
-printf("%p - %02x\n", p1, *p1);
-p1++;
+    unsigned char *p1 = (unsigned char *) p;
+    while (n--) {
+        printf("%p - %02x\n", p1, *p1);
+        p1++;
+    }
 }
-}
-struct S {
-int a;
-char c;
-char *p;
+struct X {
+    int dict;
+    int *p;
+    char c;
 };
-int main(void) {
-struct S s;
-s.a = -16;
-s.c = ’d’;
-s.p = &s.c;
-dump(&s, sizeof(struct S));
-return 0;
+
+int v[] = {7, 8, -1, 3};
+struct X x = {-10, &tams[2], 'c'};
+
+
+int main (void) {
+    dump (&x, sizeof(X));
+    return 0;
 }
