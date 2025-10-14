@@ -71,8 +71,6 @@ loop:
     movl    %r12d, %r15d
 
 
-
-
 fim:
     movq    %r13, %rax
     leave 
