@@ -1,0 +1,30 @@
+
+
+1.
+O programa em C lê um array de letras e as imprime uma por uma. A versão 
+em Assembly faz a mesma coisa: ela usa um ponteiro (%r12) para apontar 
+para cada letra do array. Um loop (L1) verifica se a letra atual é o 
+caractere final (valor zero). Se não for, o programa imprime a letra e 
+avança o ponteiro para a próxima. Se for o final, o loop para.
+
+2.
+Para fazer o programa ignorar os caracteres { e }, adicionei uma 
+verificação dentro do loop. Antes de imprimir, o código confere se o 
+caractere é um { ou um }. Se for um desses dois, ele pula a parte de 
+impressão e simplesmente avança para o próximo caractere. Caso contrário, 
+ele imprime normalmente.
+
+3.
+Para calcular os quadrados de 1 a 10 em Assembly, usei um registrador 
+(%ebx) como um contador que começa em 1. Criei um loop (L1) que só para 
+quando o contador chega em 11. A cada passo do loop, o código calcula o 
+quadrado do número atual, imprime o resultado na tela, e soma 1 ao 
+contador para continuar o processo.
+
+4.
+Este programa em Assembly soma os valores de um array de quatro números 
+inteiros. Usei um registrador para guardar a soma e outro como índice 
+(i), ambos começando em zero. O loop roda enquanto o índice for menor que 
+4. A cada passo, ele calcula a posição do número no array, pega esse 
+número e o adiciona à soma total. No final, o programa imprime o 
+resultado da soma.

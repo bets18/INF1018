@@ -1,0 +1,22 @@
+
+1.
+Para a função add em Assembly, eu simplesmente peguei o primeiro número, 
+o coloquei no registrador de retorno (eax), e somei os outros dois números 
+a ele. Usei o eax para a soma porque ele já é o registrador padrão para 
+retornar valores de uma função. Ao compilar com um main em C, o resultado 
+foi 6, como esperado.
+
+2.
+Na tradução da função de fatorial (fat), a lógica foi dividida em duas 
+partes. A primeira é o caso base: se o número de entrada for 0, a função 
+retorna 1 e termina. A segunda é o caso recursivo: se o número for maior 
+que 0, eu guardo esse número, chamo a própria função com o (número - 1) e, 
+quando ela retorna, multiplico o resultado dela pelo número que eu guardei.
+
+3.
+A função foo em Assembly percorre um array de números. Para cada número do 
+array, o código verifica se ele é igual a zero. Se não for zero, ele 
+simplesmente passa para o próximo. Mas, se o número for zero, ele é 
+substituído pelo valor de uma variável s (que começa em 0) e, em seguida, 
+a própria variável s é zerada. Depois de rodar o programa, o resultado foi 
+o que eu esperava.
