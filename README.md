@@ -14,3 +14,4 @@ Labs feitos até agora:
 Labs que falta fazer:
     Lab10
     Lab11
+    Lab12

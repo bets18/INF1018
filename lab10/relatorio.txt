@@ -1,0 +1,28 @@
+
+1.
+Essa função em Assembly percorre uma lista encadeada (uma sequência de 
+structs) para somar um valor de cada uma delas. Ela começa com a soma em 
+zero e entra em um loop. A cada passo, ela verifica se chegou ao fim da 
+lista (NULL). Se não, ela adiciona o valor do item atual à soma e avança 
+para o próximo item da lista. O processo se repete até o final.
+
+2.
+Essa função recursiva também percorre uma lista encadeada. Se o item atual 
+for o fim da lista (NULL), ela simplesmente retorna zero. Caso contrário,
+ela guarda o valor do item atual, chama a si mesma para processar o 
+restante da lista e, quando a chamada retorna, soma o valor guardado ao
+resultado.
+
+3.
+A função cria um loop while que se repete n vezes para processar um array 
+de structs. Dentro do loop, ela primeiro chama outra função, f. Em seguida, 
+pega o valor retornado por f e o armazena em um campo (px->val2) da struct 
+atual. Por fim, avança para a próxima struct no array e diminui o contador 
+n em 1, repetindo o ciclo.
+
+4.
+Esta função usa um for para percorrer dois arrays, um e outro. Para 
+cada posição i do for, ela pega o valor de um[i], passa esse valor para 
+uma função f e, em seguida, armazena o resultado retornado por f na mesma 
+posição i do array outro. Basicamente, ela faz outro[i] = f(um[i]) para 
+cada elemento.
