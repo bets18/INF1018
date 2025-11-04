@@ -1,0 +1,16 @@
+1.
+Ao tentar rodar o código principal (main), ele dava erro de "Segmentation Fault". 
+O código só funcionava quando usei a opção -Wa, --execstack na hora de 
+compilar, o que liberava a memória da pilha para execução.
+
+2. 
+A fórmula para o call foi: $x = 
+\text{endereço final} - (\text{endereço de início} + 9)$. Esse valor de x foi 
+colocado no código, lembrando da ordem Little Endian. Fiz o mesmo cálculo para 
+substituir o call pelo jmp.
+
+3. 
+Apesar de ter acertado o cálculo do offset para o call e o jmp, o "Segmentation Fault" 
+continuou acontecendo na hora de rodar o programa. O erro aparece na linha que define 
+a variável i, o que é estranho, pois essa mesma linha funcionou antes em outro teste. 
+A causa exata desse problema de execução ainda não foi descoberta.
