@@ -1,0 +1,21 @@
+1.
+Para multiplicar um float por 2, a função primeiro obtém o sinal, expoente e 
+fração da representação binária do float. Em seguida, o expoente é 
+incrementado em 1, pois multiplicar por 2 é o mesmo que somar 1 ao expoente 
+(2^y * 2=2^(y+1)). Por fim, a função usa esses novos componentes para 
+reconstruir o float e retorná-lo.
+
+2.
+A função primeiro trata o caso de entrada ser zero (retorna 0.0). Depois, ela
+define o sinal (positivo ou negativo). O expoente é calculado encontrando o 
+maior expoente (E) do inteiro na base 2 e somando o bias (127). Para a fração, 
+a função remove o bit mais significativo (o 1 implícito).
+
+Se o expoente (E) for menor ou igual a 23, a função garante a precisão exata 
+completando com zeros à direita na fração.
+
+Se o expoente (E) for maior que 23, a função limita a fração aos 23 bits mais 
+significativos (perde a precisão exata, mas maximiza a precisão possível).
+
+Por fim, o float é construído a partir do sinal, expoente e fração calculados 
+e é retornado.

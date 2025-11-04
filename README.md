@@ -13,8 +13,8 @@ Labs feitos até agora:
     lab10
     lab11
     lab13
+    lab14
 
 Labs que falta fazer:
     lab12
-    lab14
     lab15
