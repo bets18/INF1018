@@ -1,0 +1,17 @@
+
+1.
+A função novonum traduzida para Assembly lida com a entrada de um inteiro. Após configurar o 
+ambiente (RA), ela utiliza o printf, passando a string de mensagem para %rdi. Em seguida, o 
+scanf é chamado: a string de formato e o endereço da variável local no RA (-4(%rbp)) são 
+passados como argumentos, permitindo que o valor lido seja gravado diretamente na variável. 
+Finalmente, o conteúdo dessa variável local é movido para o registrador de retorno %eax, 
+concluindo a execução com o retorno do valor lido.
+
+2.
+A função bemboba traduz a lógica de preenchimento de um vetor de 4 inteiros dentro de um loop 
+for. O vetor local é alocado no RA, e o contador i está em %r10d. O loop é controlado pela 
+comparação de i com 4. Dentro da iteração, o valor de entrada é usado para preencher o elemento 
+atual. A aritmética de ponteiros é realizada com o incremento de 4 bytes no endereço (para mover 
+para o próximo inteiro), e i é incrementado em 1. Ao sair do loop (FORA_FOR), o código chama a 
+função addl (soma), passando o endereço do vetor, antes de finalizar a função e resultar na 
+impressão do valor 20.
