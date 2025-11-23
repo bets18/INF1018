@@ -1,0 +1,65 @@
+.text
+.globl boba 
+
+# dicionario 
+# float v   %xmm0
+# float li  %xmm1
+
+boba:
+    pushq   %rbp
+    movq    %rsp, %rbp
+
+    addss   %xmm1, %xmm0
+
+    leave 
+    ret 
+
+.text 
+.equ TAM, 5
+
+.globl foo
+
+# dicionario 
+# struct S *st  %rdi 
+# float lim     %xmm0
+# int i         %ebx
+# double acc    %xmm1
+
+foo:
+    pushq   %rbp
+    movq    %rsp, %rbp
+    subq    $32, %rsp
+
+    movq    %rbx, -8(%rbp)      # salva RBX (callee-saved)
+
+    movss   %xmm0, -12(%rbp)    # float lim (salva na pilha)
+
+    pxor    %xmm0, %xmm0        # gera 0.0
+    movsd   %xmm0, -24(%rbp)    # double acc = 0.0
+
+    xorl    %ebx, %ebx          # int i = 0
+
+for:
+    cmp     $TAM, %ebx            # i < TAM
+    jae     fim
+
+    movslq  %ebx, %rax          # índice para 64 bits
+
+    movw    %bx, (%rdi, %rax, 8)# st[i].s = i
+
+    movss   4(%rdi, %rax, 8), %xmm0 # st[i].f (arg 1)
+    movss   -12(%rbp), %xmm1    # lim (arg 2)
+    call    boba
+
+    cvtss2sd %xmm0, %xmm0       # float -> double
+    addsd   %xmm0, -24(%rbp)    # acc += resultado
+
+    addl    $1, %ebx            # i++
+    jmp     for
+
+fim:
+    movsd   -24(%rbp), %xmm0    # return acc
+
+    movq    -8(%rbp), %rbx      # restaura RBX
+    leave
+    ret
