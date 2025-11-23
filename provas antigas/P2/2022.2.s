@@ -3,7 +3,7 @@
 
 # dicionario 
 # float v   %xmm0
-# float li  %xmm1
+# float lim  %xmm1
 
 boba:
     pushq   %rbp
