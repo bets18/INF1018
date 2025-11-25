@@ -1,0 +1,21 @@
+1.
+Neste primeiro teste, eu apaguei os primeiros 32 bytes da função principal (main) e, depois, eu troquei o 
+endereço de base da memória (rbp) da main por números aleatórios. O programa rodou e mostrou a mensagem da 
+função danger, como esperado. O estranho foi que não travou (não deu segmentation fault). Em vez de travar, 
+apareceu a mensagem da função illegalhandler. Isso significa que, mesmo com a memória bagunçada, algum sistema 
+de segurança ou de erro do programa agiu rápido e evitou a falha total.
+
+2. 
+No segundo teste, com o arquivo stringinvasora2, eu quis fazer o programa pular para a função smoke. Para 
+isso, aumentei o código de ataque para que ele trocasse o endereço de retorno da função pela localização da 
+função smoke. Após rodar, o terminal confirmou: as mensagens de danger e, em seguida, de smoke apareceram. 
+Como a função smoke foi feita para encerrar o programa corretamente (usando exit(0)), a execução terminou de 
+forma limpa, sem erros ou travamentos.
+
+3. 
+O último teste usou o stringinvasora2 para inserir um código novo (shellcode) dentro do programa. Primeiro, 
+eu coloquei o shellcode (que eu tinha pego antes) nos primeiros 32 bits da área de memória (buf) e troquei o 
+endereço rbp. A parte crucial foi fazer com que o programa, ao terminar a função getbuf, não voltasse ao 
+normal, mas sim pulasse para o endereço de buf, onde estava o código novo. Esse endereço de buf foi pego 
+enquanto o programa rodava. Por fim, eu coloquei o endereço da função fizz no final, para que ela fosse 
+executada depois que o meu código novo terminasse de rodar.

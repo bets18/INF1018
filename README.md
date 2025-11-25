@@ -1,6 +1,6 @@
 # INF1018
 
-Labs feitos até agora:
+Labs feitos:
     Lab1
     Lab2
     Lab3
@@ -12,9 +12,12 @@ Labs feitos até agora:
     lab9
     lab10
     lab11
+    lab12
     lab13
     lab14
+    lab15
+    lab16
+    lab17
 
 Labs que falta fazer:
-    lab12
-    lab15
+    

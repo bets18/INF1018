@@ -1,0 +1,24 @@
+1. 
+Eu analisei a organização da struct x na memória, confirmando que ela segue as regras de alinhamento. A 
+estrutura é disposta em blocos, começando com 8 bytes para o tipo double, seguidos por 4 bytes para o float, 
+2 bytes para o short, e terminando com 2 bytes de padding (preenchimento) para garantir o alinhamento correto.
+A saída do programa, que exibe endereços e valores em hexadecimal, confirmou essa disposição, respeitando o 
+padrão Little-Endian. A representação dos valores está correta: o double -4.5 (C0 12 00 00 00 00 00 00), o 
+float 9.75 (41 1C 00 00) e o short -11 (FF F5), todos com a ordem de bytes invertida, conforme esperado pelo 
+padrão Little-Endian.
+
+2. 
+Eu traduzi integralmente a função foo para Assembly, adicionando os comentários necessários para explicar o 
+fluxo do código. Os testes de execução que realizei confirmaram que a função se comportou conforme o esperado, 
+indicando que a tradução foi bem-sucedida e semanticamente correta.
+
+3. 
+Também eu realizei a tradução comentada da função pack para Assembly. Assim como no caso anterior, obtive 
+sucesso na execução, confirmando que a lógica da função foi corretamente replicada no código Assembly.
+
+4. 
+Eu traduzi a função pack1 para Assembly, incluindo todos os comentários. Embora o código tenha compilado sem 
+apresentar erros (em tempo de compilação), ocorre uma falha de segmentação (segmentation fault) durante a 
+execução (runtime). Até este momento, eu não consegui isolar a causa específica que leva a este acesso 
+inválido à memória, mas a falha aponta para um erro na forma como a Assembly tenta manipular ou acessar uma 
+área protegida ou inexistente da memória.

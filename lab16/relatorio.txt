@@ -1,0 +1,35 @@
+2. 
+Eu utilizei o programa nm para analisar os símbolos dos arquivos objeto. As letras exibidas pelo nm indicam a 
+localização do símbolo no arquivo, seguindo a convenção:
+
+    U: (Undefined) Símbolo não está definido no arquivo atual (exemplo: a variável a em temp2.c).
+
+    T: (Text) Símbolo localizado na seção de texto/código (exemplo: a função foo ou a função main).
+
+    D: (Data) Símbolo inicializado na seção de dados (exemplo: variáveis globais inicializadas).
+
+3. 
+O terminal exibiu um erro de tipos conflitantes para a variável a. Esse problema ocorreu porque eu declarei a 
+como char no arquivo .c, mas ela estava definida como int no arquivo de cabeçalho (.h). Esse conflito impede a 
+geração do arquivo objeto. Se eu comentar a linha que inclui o #include "temp1.h", o código compila normalmente.
+
+4. 
+    a. O programa rodou e exibiu o resultado numérico 1277. No entanto, eu não consegui determinar a razão 
+    exata para esse resultado.
+
+    b. O processo de ligação (linking) falhou com o erro de "múltiplas definições". Ao verificar os símbolos, 
+    notei que eu inicializei a variável a em ambos os arquivos (temp1.c e temp2.c), o que gerou um conflito de 
+    nomes globais.
+
+    c. Com a correção, os programas compilaram e o resultado exibido foi 1024. A solução foi definir a variável 
+    a em temp2.c como static. Isso evita o conflito de nomes globais, pois o a de temp2.c se torna privado 
+    àquele arquivo. A função foo altera apenas o a interno de temp2.c, preservando o valor do a de temp1.c, 
+    que é o valor impresso.
+
+5. 
+    a. O compilador me avisou que a função b() foi declarada implicitamente. Quando eu rodei o programa, 
+    ocorreu um segmentation fault. O nm mostra que o símbolo b não está definido, indicando que o programa 
+    tentou acessar uma função que não existe nas bibliotecas.
+
+    b. O erro de segmentation fault se repetiu. As mudanças que fiz em temp2.c não corrigiram o problema 
+    principal, pois a chamada inválida da função b() está dentro de temp1.c.

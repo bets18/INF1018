@@ -1,0 +1,27 @@
+1. 
+A tradução da função foo para Assembly foi concluída com sucesso. No entanto, observei um comportamento 
+inesperado ao remover o protótipo da função no programa principal (main) antes da execução: o valor retornado 
+foi 0.0 (ponto flutuante de zero). Minha análise sugere que este erro ocorreu porque, na ausência de um 
+protótipo, o compilador assumiu, por padrão, que o tipo de retorno era int. Essa suposição fez com que o 
+programa procurasse o resultado no registrador incorreto – %rax (usado para inteiros) – em vez de no %xmm0 
+(usado para float e double), que é onde o resultado correto em ponto flutuante estava armazenado.
+
+2. 
+A implementação da função foo1 em Assembly produziu o resultado esperado. Para garantir essa correção, eu 
+precisei reservar o valor da variável b movendo-o para a pilha de execução (ou seja, salvando-o 
+temporariamente). Esta ação foi essencial porque o registrador que originalmente continha b (%xmm1) é 
+classificado como volátil e seria, portanto, alterado ou perdido durante a chamada da função sin. Ao salvar 
+b na pilha, protegi seu valor da alteração causada pela chamada de função.
+
+3. 
+A implementação em Assembly da foo2 também foi concluída com sucesso. Neste caso, diferentemente do anterior, 
+eu tive que salvar explicitamente os valores de ambas as variáveis, a e b, na pilha. O principal objetivo era 
+protegê-las contra perdas ou corrupção, uma vez que seriam utilizadas em chamadas subsequentes e independentes
+ às funções sin e cos. Se eu não tivesse salvo os valores, os registradores voláteis usados para a e b seriam 
+ alterados pelas chamadas de função, invalidando os cálculos subsequentes.
+
+4. 
+A tradução da função foo3 para Assembly com comentários também foi bem-sucedida. Um detalhe técnico notável 
+foi o processo de inicialização da variável local double r com o valor 0.0. Para realizar esta inicialização, 
+o valor zero foi primeiro carregado em um registrador inteiro de 64 bits (quad) e, em seguida, convertido para 
+o formato de ponto flutuante de precisão dupla (double) usando uma instrução de conversão apropriada.

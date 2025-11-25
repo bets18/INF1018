@@ -45,5 +45,4 @@ while:
     je      fim
 
     mov
-
-
+    
